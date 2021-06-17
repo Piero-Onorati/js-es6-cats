@@ -24,7 +24,7 @@ const gatti = [
         sesso : 'F'
     },
     {
-        nome:'Garfild',
+        nome:'Garfield',
         eta : 3,
         colore: '#ffa500',
         sesso : 'M'
@@ -81,23 +81,27 @@ const gattiMaschi = nuoviGatti.filter((element) => {
     return element.sesso == 'M';
 });
 
-
-gattiMaschi.forEach((element) => 
-    document.getElementById('gattiMaschi').innerHTML+=
-    `${element.nome}: <i class="fas fa-cat" style="color:${element.colore};"></i> <i class="fas fa-award" style="color:${element.fiocco.colore}; opacity:${element.fiocco.opacita}"></i><br>
-    `
-);
-
-
 const gattiFemmine = nuoviGatti.filter((element) => {
     return element.sesso == 'F';
 });
 
-gattiFemmine.forEach((element) => 
-    document.getElementById('gattiFemmine').innerHTML+=
-    `${element.nome}: <i class="fas fa-cat" style="color:${element.colore};"></i> <i class="fas fa-award" style="color:${element.fiocco.colore}; opacity:${element.fiocco.opacita}"></i><br>
-    `
-);
+// Creare una funzione per la stampa dei 2 contenitori
+const stampa = (array) => {
+
+    document.getElementById('contenitore').innerHTML +='<b>Contenitore:</b> <br>';
+
+    array.forEach((element) => {
+        document.getElementById('contenitore').innerHTML +=
+        `${element.nome}: <i class="fas fa-cat" style="color:${element.colore};"></i> <i class="fas fa-award" style="color:${element.fiocco.colore}; opacity:${element.fiocco.opacita}"></i><br>
+        `
+    });
+
+    document.getElementById('contenitore').innerHTML += '<br>';
+}
+
+stampa(gattiMaschi);
+
+stampa(gattiFemmine);
 
 /* Milestone 3 */
 // Creare un nuovo array con prima tutti i gattini femmina e poi tutti i gattini maschio
