@@ -37,5 +37,5 @@ const gatti = [
 
 gatti.forEach(element => 
     document.getElementById('gatti').innerHTML+=
-    `<i class="fas fa-cat" style="color:${element.colore};"></i> <br>`
+    `${element.nome}: <i class="fas fa-cat" style="color:${element.colore};"></i> <br>`
 );
