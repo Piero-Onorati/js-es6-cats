@@ -10,66 +10,66 @@ Creare un nuovo array con prima tutti i gattini femmina e poi tutti i gattini ma
 
 /* Milestone 1*/
 // Definire un array di oggetti; ogni oggetto rappresenta un gatto, che è caratterizzato da: nome, età, colore e sesso.
-const gatti = [
+const cats = [
     {
-        nome:'Tom',
-        eta : 2,
-        colore: '#708090',
-        sesso : 'M'
+        name:'Tom',
+        age : 2,
+        color: '#708090',
+        gender : 'M'
     },
     {
-        nome:'Virgola',
-        eta : 1,
-        colore: '#000000',
-        sesso : 'F'
+        name:'Virgola',
+        age : 1,
+        color: '#000000',
+        gender : 'F'
     },
     {
-        nome:'Garfield',
-        eta : 3,
-        colore: '#ffa500',
-        sesso : 'M'
+        name:'Garfield',
+        age : 3,
+        color: '#ffa500',
+        gender : 'M'
     },
     {
-        nome:'Pallina',
-        eta : 4,
-        colore: '#8a6642',
-        sesso : 'F'
+        name:'Pallina',
+        age : 4,
+        color: '#8a6642',
+        gender : 'F'
     }
 ];
 
 // Tramite il forEach(), stampare in pagina tutti i gattini, ciascuno con il proprio colore e il proprio nome.
-gatti.forEach((element) => 
-    document.getElementById('gatti').innerHTML+=
-    `${element.nome}: <i class="fas fa-cat" style="color:${element.colore};"></i> <br>`
+cats.forEach((element) => 
+    document.getElementById('cats').innerHTML+=
+    `${element.name}: <i class="fas fa-cat" style="color:${element.color};"></i> <br>`
 );
 
 
 /* Milestone 2*/
 // Creiamo un nuovo array con tutti gli elementi di quello di partenza + il fiocco
 
-const rosa = '#ff1493';
-const blu = '#0000ff';
+const pink = '#ff1493';
+const blue = '#0000ff';
 
-const nuoviGatti = gatti.map((element) => {
+const newCats = cats.map((element) => {
 
     // const nome = element.nome;
     // const eta = element.eta;
     // const colore = element.colore;
     // const sesso = element.sesso;
 
-    const{nome, eta, colore, sesso} = element;
+    const{name, age, color, gender} = element;
 
-    let coloreFiocco = (sesso == "F")? rosa : blu;
-    let opacita = element.eta/4;
+    let colorBow = (gender == "F")? pink : blue;
+    let opacity = element.age/4;
 
     return{
-        nome,
-        eta,
-        colore,
-        sesso,
-        fiocco: {
-            colore: coloreFiocco,
-            opacita: opacita
+        name,
+        age,
+        color,
+        gender,
+        bow: {
+            color: colorBow,
+            opacity: opacity
         }
     }
 });
@@ -77,43 +77,43 @@ const nuoviGatti = gatti.map((element) => {
 
 // Dividiamo i maschi dalle femmine
 
-const gattiMaschi = nuoviGatti.filter((element) => {
-    return element.sesso == 'M';
+const maleCats = newCats.filter((element) => {
+    return element.gender == 'M';
 });
 
-const gattiFemmine = nuoviGatti.filter((element) => {
-    return element.sesso == 'F';
+const femaleCats = newCats.filter((element) => {
+    return element.gender == 'F';
 });
 
 // Creare una funzione per la stampa dei 2 contenitori
-const stampa = (array) => {
+const print = (array) => {
 
-    document.getElementById('contenitore').innerHTML +='<b>Contenitore:</b> <br>';
+    document.getElementById('container').innerHTML +='<b>Contenitore:</b> <br>';
 
     array.forEach((element) => {
-        document.getElementById('contenitore').innerHTML +=
-        `${element.nome}: <i class="fas fa-cat" style="color:${element.colore};"></i> <i class="fas fa-award" style="color:${element.fiocco.colore}; opacity:${element.fiocco.opacita}"></i><br>
+        document.getElementById('container').innerHTML +=
+        `${element.name}: <i class="fas fa-cat" style="color:${element.color};"></i> <i class="fas fa-award" style="color:${element.bow.color}; opacity:${element.bow.opacity}"></i><br>
         `
     });
 
-    document.getElementById('contenitore').innerHTML += '<br>';
+    document.getElementById('container').innerHTML += '<br>';
 }
 
-stampa(gattiMaschi);
+print(maleCats);
 
-stampa(gattiFemmine);
+print(femaleCats);
 
 /* Milestone 3 */
 // Creare un nuovo array con prima tutti i gattini femmina e poi tutti i gattini maschio
-const gattiFemmineMaschi = [...gattiFemmine,...gattiMaschi];
+const femaleMaleCats = [...femaleCats,...maleCats];
 
-const gattiFemmineMaschiZip = gattiFemmineMaschi.map((element)=>{
-    const { nome, colore, fiocco} = element;
-    return { nome, colore, fiocco}
+const femaleMaleCatsZip = femaleMaleCats.map((element)=>{
+    const { name, color, bow} = element;
+    return { name, color, bow}
 });
 
-gattiFemmineMaschiZip.forEach((element) => 
-    document.getElementById('arrayUnico').innerHTML+=
-    `${element.nome}: <i class="fas fa-cat" style="color:${element.colore};"></i> <i class="fas fa-award" style="color:${element.fiocco.colore}; opacity:${element.fiocco.opacita}"></i><br>
+femaleMaleCatsZip.forEach((element) => 
+    document.getElementById('arrayU').innerHTML+=
+    `${element.name}: <i class="fas fa-cat" style="color:${element.color};"></i> <i class="fas fa-award" style="color:${element.bow.color}; opacity:${element.bow.opacity}"></i><br>
     `
 );
